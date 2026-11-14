@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista teste</title>
+</head>
+
+<body>
+    <h1>Lista de Filiais</h1>
+    <a th:href="@{/filiais/nova}">Nova filial</a>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome Filial</th>
+                <th>Código Filial</th>
+                <th>CNPJ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="f : ${filiais}">
+                <td th:text="${f.nome}"></td>
+                <td th:text="${f.codigoFilial}"></td>
+                <td th:text="${f.cnpj}"></td>
+                <td>
+                    <a th:href="@{/filiais/{id}/editar(id=${f.id})}">Editar</a>
+
+                    <form th:action="@{/filiais/{id}/excluir(id=${f.id})}" method="post" style="display:inline">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+        </tbody>
+    </table>
+</body>
+
+</html>
