@@ -2,9 +2,11 @@ package br.com.controllers;
 
 import br.com.models.Filial;
 import br.com.repositories.FilialRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -26,8 +28,20 @@ public class FilialController {
         return "filial/form";
     }
 
-    @PostMapping
-    public String salvar(@ModelAttribute Filial filial){
+    @PostMapping // Post por causa do formulario
+    public String salvar(@Valid @ModelAttribute Filial filial, BindingResult result){ //@vallid para validar campos vazios
+        // 1. verificação de cmapo vazio
+        if (result.hasErrors()) {
+            return "filial/form";
+        }
+
+        // 2. verificação de filial existente
+        if (filial.getId() == null && repository.existsByCodigoFilial(filial.getCodigoFilial())) {
+            result.rejectValue("codigoFilial", "duplicado", "Código já cadastrado");
+            return "filial/form";
+        }
+
+        // 3. se passou, salva
         repository.save(filial);
         return "redirect:/filiais";
     }
