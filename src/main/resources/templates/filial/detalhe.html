@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+  <p>Nome: <span th:text="${filial.nome}"></span></p>
+  <p>Codigo: <span th:text="${filial.codigoFilial}"></span></p>
+  <p>CNPJ: <span th:text="${filial.cnpj}"></span></p>
+
+  <h1>Impressoras</h1>
+  <a th:href="@{/impressoras/nova}">Nova impressora</a>
+  <br><br>
+  <table>
+    <thead>
+    <tr>
+      <th>Modelo</th>
+      <th>Localizacao</th>
+      <th>patrimonio</th>
+      <th>ip</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr th:each="imp : ${impressoras}">
+      <td><a th:href="@{/impressoras/{id}(id=${imp.id})}" th:text="${imp.modelo}"></a></td>
+      <td th:text="${imp.localizacao}"></td>
+      <td th:text="${imp.patrimonio}"></td>
+      <td th:text="${imp.ip}"></td>
+
+        <a th:href="@{/impressoras/{id}/editar(id=${imp.id})}">Editar</a>
+
+        <form th:action="@{/impressoras/{id}/excluir(id=${imp.id})}" method="post" style="display:inline">
+          <button type="submit">Excluir</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>

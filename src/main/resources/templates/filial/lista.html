@@ -19,9 +19,9 @@
                 <th>CNPJ</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             <tr th:each="f : ${filiais}">
-                <td th:text="${f.nome}"></td>
+                <td><a th:href="@{/filiais/{id}(id=${f.id})}" th:text="${f.nome}"></a></td>
                 <td th:text="${f.codigoFilial}"></td>
                 <td th:text="${f.cnpj}"></td>
                 <td>
@@ -31,6 +31,7 @@
                         <button type="submit">Excluir</button>
                     </form>
                 </td>
+            </tr>
         </tbody>
     </table>
 </body>
