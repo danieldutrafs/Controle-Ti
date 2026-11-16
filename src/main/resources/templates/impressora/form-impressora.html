@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario impressora</title>
+</head>
+<body>
+    <form th:action="@{/impressoras}" th:object="${impressora}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{filial.id}">
+
+        <label for="modelo-impressora">Modelo: </label>
+        <input type="text"  id="modelo-impressora" th:field="*{modelo}">
+        <br><br>
+
+        <label for="localizacao" >localizacao: </label>
+        <input type="text" id="localizacao" th:field="*{localizacao}">
+        <br><br>
+
+        <label for="ip">Ip:</label>
+        <input type="text" id="ip" th:field="*{ip}">
+        <br><br>
+
+        <label for="patrimonio">Patrimonio: </label>
+        <input type="text" id="patrimonio" th:field="*{patrimonio}">
+        <br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
