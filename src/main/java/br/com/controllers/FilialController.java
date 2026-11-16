@@ -70,7 +70,7 @@ public class FilialController {
         Filial filial = repository.findById(id).orElseThrow(() -> new RuntimeException("Filial não encontrada"));
         List<Impressora> impressoras = impressoraRepository.findByFilial_Id(id);
         model.addAttribute("filial", filial);
-        model.addAttribute("impressora", impressoras);
+        model.addAttribute("impressoras", impressoras);
         return "filial/detalhe";
     }
 }

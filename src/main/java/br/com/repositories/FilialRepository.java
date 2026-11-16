@@ -9,5 +9,4 @@ public interface FilialRepository extends JpaRepository<Filial, Long> {
 
     boolean existsByCodigoFilial(String codigoFilial);
 
-    List<Filial> id(Long id);
 }
