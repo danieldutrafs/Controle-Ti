@@ -19,11 +19,10 @@ public class User {
 
     @NotBlank
     @Column(unique = true)
-    private String user;
+    private String login;
 
     @NotBlank
     private String senhas;
 
-    @NotBlank
-    private boolean isAdmin;
+    private boolean admin;
 }

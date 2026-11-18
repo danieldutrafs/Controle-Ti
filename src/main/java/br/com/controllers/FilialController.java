@@ -66,7 +66,7 @@ public class FilialController {
 
     //detalhar filial
     @GetMapping("{id}")
-    public String detalahar(@PathVariable Long id, Model model){
+    public String detalhar(@PathVariable Long id, Model model){
         Filial filial = repository.findById(id).orElseThrow(() -> new RuntimeException("Filial não encontrada"));
         List<Impressora> impressoras = impressoraRepository.findByFilial_Id(id);
         model.addAttribute("filial", filial);
